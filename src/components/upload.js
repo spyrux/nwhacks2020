@@ -1,55 +1,76 @@
-import React from 'react';
-import {Form, Button, ButtonGroup, Container} from 'react-bootstrap';
-import { Nav, Navbar} from 'react-bootstrap';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-class Upload extends React.Component{
-  render(){
-    return(
+class Create extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      food: '',
+      expiryDate: '',
+    };
+  }
 
+  handleInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const { food, expiryDate } = this.state;
+
+    const item = {
+      food,
+      expiryDate,
+    };
+
+    axios
+      .post('http://localhost:3001/create', item)
+      .then(() => console.log('Book Created'))
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
+  render() {
+    return (
       <div>
-               <>
-  <Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="#">Free Your Fridge</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="/upload">Upload</Nav.Link>
-      <Nav.Link href="/fridge"> My Fridge</Nav.Link>
-      <Nav.Link href="/recipes">Recipes</Nav.Link>
-    </Nav>
-  </Navbar>
-  <br />
-      </>
-      <header style={{textAlign:"center", fontSize: 30}}> Upload Your Images or Type Them In!
-      </header>
-      <Container>
-        <h1>Upload Images Here!</h1>
-        <ButtonGroup aria-label="Basic example">
-        <Button variant="dark">Food Image</Button>
-        <Button variant="dark">Expiry Date</Button>
-        <Button variant="dark">Submit</Button>
-      </ButtonGroup>
-      </Container>
-
-
-    <Container>
-    <Form>
-        <h2>Manually Submit</h2>
-        <Form.Group controlId="formFood">
-          <Form.Control type="Type of Food" placeholder="Type of Food"/>
-          </Form.Group>
-
-          <Form.Group controlId="formExpiryDate">
-          <Form.Control type="Expiry Date" placeholder="Expiry Date in MM/DD/YYYY" />
-          </Form.Group>
-          <Button variant="dark" type="submit">
-          Submit
-    </Button>
-    </Form>
-    </Container>
-    </div>
+        <br />
+        <div className="container">
+          <form onSubmit={this.handleSubmit}>
+            <div style={{ width: '30%' }} className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="foodID"
+                placeholder="Enter your Food..."
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <br />
+            <div style={{ width: '30%' }} className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="expiryDate"
+                placeholder="Enter the expiry date..."
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <br />
+            <div style={{ width: '30%' }}>
+              <button className="btn btn-success" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     );
   }
 }
 
-export default Upload
+export default Create;
