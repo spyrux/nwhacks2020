@@ -18,9 +18,9 @@ class LandingPage extends React.Component{
         <div class="inner">
           <h3 class="masthead-brand">Welcome to whatsinmyfridge</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="https://getbootstrap.com/docs/4.4/examples/cover/#">Upload</a>
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.4/examples/cover/#">My Fridge</a>
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.4/examples/cover/#">Recipes</a>
+            <a class="nav-link active" href="/src/components/upload">Upload</a>
+            <a class="nav-link" href="/src/components/fridge">My Fridge</a>
+            <a class="nav-link" href="/src/components/recipes">Recipes</a>
           </nav>
         </div>
       </header>
