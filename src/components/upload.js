@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Nav, Navbar, ListGroup} from 'react-bootstrap';
 import axios from 'axios';
 
 class Create extends Component {
@@ -12,7 +13,6 @@ class Create extends Component {
   }
 
   handleInputChange = e => {
-    //alert(e.target.name + e.target.value)
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -22,7 +22,6 @@ class Create extends Component {
     e.preventDefault();
 
     const { foodID, expiryDate } = this.state;
-    alert(foodID);
     const item = {
       foodID,
       expiryDate
@@ -59,10 +58,25 @@ class Create extends Component {
   render() {
     return (
       <div>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Free Your Fridge</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/upload">Upload</Nav.Link>
+          <Nav.Link href="/fridge"> My Fridge</Nav.Link>
+          <Nav.Link href="/recipes">Recipes</Nav.Link>
+        </Nav>
+      </Navbar>
         <br />
-        <div className="container">
+        <center>
+        <br />
+        <br />
+        <h1>Enter a fridge item and its expiration date</h1>
+        <br />
+        <br />
+        <div class="container">
           <form onSubmit={this.handleSubmit}>
-            <div style={{ width: '30%' }} className="form-group">
+            <div style={{ width: '60%' }} className="form-group">
               <input
                 type="text"
                 className="form-control"
@@ -72,7 +86,7 @@ class Create extends Component {
               />
             </div>
             <br />
-            <div style={{ width: '30%' }} className="form-group">
+            <div style={{ width: '60%' }} className="form-group">
               <input
                 type="text"
                 className="form-control"
@@ -82,13 +96,15 @@ class Create extends Component {
               />
             </div>
             <br />
-            <div style={{ width: '30%' }}>
+            <div style={{ width: '60%' }}>
               <button className="btn btn-success" type="submit">
                 Submit
               </button>
             </div>
           </form>
+
         </div>
+        </center>
       </div>
     );
   }

@@ -14,10 +14,10 @@ class LandingPage extends React.Component{
       <div>
 
       <body class="text-center">
-       
+
       <header class="masthead mb-auto">
         <div class="inner">
-          
+
           <>
   <Navbar bg="dark" variant="dark">
     <Navbar.Brand href="#home">Free Your Fridge</Navbar.Brand>
@@ -34,13 +34,18 @@ class LandingPage extends React.Component{
       </header>
 
       <main role="main" class="inner cover">
+      <br />
+      <br />
         <h1 class="cover-heading">Don't Let Your Food Go to Waste</h1>
+        <br />
+        <br />
         <Container>
         <text> whatsinmyfridge is an application that keeps track of the
         items in your fridge and notifies you of expiry dates.<br/>
          Take a photo of the expiration date and upload a photo of the food, or type it in manually!</text>
 
-
+         <br />
+         <br />
         </Container>
         <img src = {fridgepic} width = '450' height = '450'/>
       </main>
@@ -49,7 +54,7 @@ class LandingPage extends React.Component{
         <div class="inner">
         </div>
       </footer>
-    
+
 
 
     </body>
