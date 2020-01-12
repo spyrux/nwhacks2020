@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Fridge from './fridge';
 import Recipes from './recipes';
 import Container from 'react-bootstrap/Container';
+import fridgepic from './images/87266475-stock-vector-thumbs-up-cute-refrigerator-character-cartoon.jpg'
 
 
 class LandingPage extends React.Component{
@@ -30,7 +31,10 @@ class LandingPage extends React.Component{
         <text> whatsinmyfridge is an application that keeps track of the
         items in your fridge and notifies you of expiry dates.<br/>
          Take a photo of the expiration date and upload a photo of the food, or type it in manually!</text>
+
+
         </Container>
+        <img src = {fridgepic} width = '450' height = '450'/>
       </main>
 
       <footer class="mastfoot mt-auto">
