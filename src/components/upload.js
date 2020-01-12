@@ -6,33 +6,48 @@ class Create extends Component {
     super(props);
 
     this.state = {
-      food: '',
+      foodID: '',
       expiryDate: '',
     };
   }
 
   handleInputChange = e => {
+    //alert(e.target.name + e.target.value)
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    const { food, expiryDate } = this.state;
-
+    // const { food, expiryDate } = this.state;
+    // alert(food);
     const item = {
-      food,
-      expiryDate,
+      name: this.state.foodID,
+      expiry: this.state.expiryDate
     };
 
-    axios
-      .post('http://localhost:3001/create', item)
-      .then(() => console.log('Book Created'))
-      .catch(err => {
-        console.error(err);
-      });
+    alert(`submitted! ${item.name}`);
+
+    fetch(`http://localhost:${process.env.PORT || 3001}/api/items`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstParam: 'yourValue',
+        secondParam: 'yourOtherValue',
+      })
+    })
+
+    // axios
+    //   .post(`http://localhost:${process.env.PORT || 3001}/api/items`, item)
+    //   .then(() => console.log('Entry Created'))
+    //   .catch(err => {
+    //     console.error(err);
+    //   });
   };
 
   render() {
