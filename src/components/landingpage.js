@@ -3,7 +3,8 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Fridge from './fridge';
 import Recipes from './recipes';
 import Container from 'react-bootstrap/Container';
-import fridgepic from './images/87266475-stock-vector-thumbs-up-cute-refrigerator-character-cartoon.jpg'
+import fridgepic from './images/87266475-stock-vector-thumbs-up-cute-refrigerator-character-cartoon.jpg';
+import { Nav, Navbar} from 'react-bootstrap';
 
 
 class LandingPage extends React.Component{
@@ -13,16 +14,23 @@ class LandingPage extends React.Component{
       <div>
 
       <body class="text-center">
-        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+       
       <header class="masthead mb-auto">
         <div class="inner">
-          <h3 class="masthead-brand">Welcome to whatsinmyfridge</h3>
-          <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="/upload">Upload</a>
-            <a class="nav-link" href="/fridge">My Fridge</a>
-            <a class="nav-link" href="/recipes">Recipes</a>
-          </nav>
-        </div>
+          
+          <>
+  <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="#home">Free Your Fridge</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/upload">Upload</Nav.Link>
+      <Nav.Link href="/fridge"> My Fridge</Nav.Link>
+      <Nav.Link href="/recipes">Recipes</Nav.Link>
+    </Nav>
+  </Navbar>
+  <br />
+      </>
+      </div>
       </header>
 
       <main role="main" class="inner cover">
@@ -41,7 +49,7 @@ class LandingPage extends React.Component{
         <div class="inner">
         </div>
       </footer>
-    </div>
+    
 
 
     </body>

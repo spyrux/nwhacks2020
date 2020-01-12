@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form, Button, ButtonGroup, Container} from 'react-bootstrap';
+import { Nav, Navbar} from 'react-bootstrap';
 
 class Upload extends React.Component{
   render(){
@@ -7,6 +8,18 @@ class Upload extends React.Component{
 
 
       <div>
+               <>
+  <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="#">Free Your Fridge</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/upload">Upload</Nav.Link>
+      <Nav.Link href="/fridge"> My Fridge</Nav.Link>
+      <Nav.Link href="/recipes">Recipes</Nav.Link>
+    </Nav>
+  </Navbar>
+  <br />
+      </>
       <header style={{textAlign:"center", fontSize: 30}}> Upload Your Images or Type Them In!
       </header>
       <Container>
