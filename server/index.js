@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
 const Joi = require('joi');
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors());
 
 const items = [
-  {id: 1, name: 'banana', expiry: 10},
-  {id: 2, name: 'apple', expiry: 20},
-  {id: 3, name: 'milk', expiry: 5}
+  {id: 1, foodID: 'banana', expiryDate: 10},
+  {id: 2, foodID: 'apple', expiryDate: 20},
+  {id: 3, foodID: 'milk', expiryDate: 5}
 ];
 
 
@@ -31,12 +33,15 @@ app.get('/api/items/:id', (req, res) => {
 //add entry
 app.post('/api/items', (req, res) => {
   const { error } = validateItem(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) {
+    console.log(error.details[0].message);
+    return res.status(400).send(error.details[0].message);
+  }
 
   const item = {
     id: items.length + 1,
-    name: req.body.name,
-    expiry: req.body.expiry
+    foodID: req.body.foodID,
+    expiryDate: req.body.expiryDate
   }
   items.push(item);
   res.send(item);
@@ -49,10 +54,13 @@ app.put('/api/items/:id', (req, res) => {
   if (!item) return res.status(404).send('The item with the given id is not present!');
 
   const { error } = validateItem(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) {
+    console.log(error.details[0].message);
+    return res.status(400).send(error.details[0].message);
+  }
 
-  item.name = req.body.name;
-  item.expiry = req.body.expiry;
+  item.foodID = req.body.foodID;
+  item.expiryDate = req.body.expiryDate;
   res.send(item);
 });
 
@@ -72,8 +80,8 @@ app.delete('/api/items/:id', (req, res) => {
 
 function validateItem (body) {
   const schema = {
-    name: Joi.string().min(2).required(),
-    expiry: Joi.number().positive().required()
+    foodID: Joi.string().min(2).required(),
+    expiryDate: Joi.number().positive().required()
   }
   const result = Joi.validate(body, schema);
   return result;
@@ -91,7 +99,7 @@ app.listen(port, () => {console.log(`Listening on port ${port}...`)});
 // const ObjectId = require("mongodb").ObjectID;
 //
 // const CONNECTION_URL = "mongodb+srv://FridgeUser:wbANGRtSWTKFpqYG@fridgecluster-0ptky.mongodb.net/test?retryWrites=true&w=majority";
-// const DATABASE_NAME = "FridgeDB";
+// const DATABASE_foodID = "FridgeDB";
 //
 // var app = Express();
 //
@@ -105,8 +113,8 @@ app.listen(port, () => {console.log(`Listening on port ${port}...`)});
 //         if(error) {
 //             throw error;
 //         }
-//         database = client.db(DATABASE_NAME);
+//         database = client.db(DATABASE_foodID);
 //         collection = database.collection("people");
-//         console.log("Connected to `" + DATABASE_NAME + "`!");
+//         console.log("Connected to `" + DATABASE_foodID + "`!");
 //     });
 // });

@@ -21,33 +21,39 @@ class Create extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    // const { food, expiryDate } = this.state;
-    // alert(food);
+    const { foodID, expiryDate } = this.state;
+    alert(foodID);
     const item = {
-      name: this.state.foodID,
-      expiry: this.state.expiryDate
+      foodID,
+      expiryDate
     };
 
-    alert(`submitted! ${item.name}`);
+    alert(`submitted! ${item.foodID}`);
 
-    fetch(`http://localhost:${process.env.PORT || 3001}/api/items`, {
+    fetch(`http://localhost:5000/api/items`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
-      body: JSON.stringify({
-        firstParam: 'yourValue',
-        secondParam: 'yourOtherValue',
-      })
+      body: JSON.stringify(item)
     })
-
+    //alert(process.env.PORT || 3001);
     // axios
-    //   .post(`http://localhost:${process.env.PORT || 3001}/api/items`, item)
+    //   .post('http://localhost:5000/api/items', item)
     //   .then(() => console.log('Entry Created'))
     //   .catch(err => {
     //     console.error(err);
     //   });
+    //
+    // const options = {
+    //   method: 'POST',
+    //   headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    //   data: item,
+    //   url,
+    // };
+    // axios(options);
   };
 
   render() {
